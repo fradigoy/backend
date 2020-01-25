@@ -12,6 +12,9 @@ public class Post {
 
     private String body;
 
+    public Post() {
+    }
+
     public long getId() {
         return id;
     }
