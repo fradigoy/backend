@@ -1,6 +1,6 @@
 package fr.fradigoy.backspringbash.reader;
 
-import fr.fradigoy.backspringbash.domain.Post;
+import fr.fradigoy.backspringbash.domain.PostBean;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -8,13 +8,13 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
 
-public class RESTPostReader implements ItemReader<Post> {
+public class RESTPostReader implements ItemReader<PostBean> {
 
     private final String URL_API;
     private final RestTemplate restTemplate;
 
     private int nextPostIndex;
-    private List<Post> postData;
+    private List<PostBean> postBeanData;
 
     public RESTPostReader(String url_api, RestTemplate restTemplate) {
         URL_API = url_api;
@@ -23,32 +23,32 @@ public class RESTPostReader implements ItemReader<Post> {
     }
 
     @Override
-    public Post read() throws Exception {
+    public PostBean read() throws Exception {
 
         if(postDataIsNotInitialized()){
-            postData = fetchPostDataFromAPI();
+            postBeanData = fetchPostDataFromAPI();
         }
 
-        Post nPost = null;
+        PostBean nPostBean = null;
 
-        if(nextPostIndex < postData.size()){
-            nPost = postData.get(nextPostIndex);
+        if(nextPostIndex < postBeanData.size()){
+            nPostBean = postBeanData.get(nextPostIndex);
             nextPostIndex++;
         }
 
-        return nPost;
+        return nPostBean;
     }
 
-    private List<Post> fetchPostDataFromAPI() {
-        ResponseEntity<Post[]> response = restTemplate.getForEntity(URL_API, Post[].class);
+    private List<PostBean> fetchPostDataFromAPI() {
+        ResponseEntity<PostBean[]> response = restTemplate.getForEntity(URL_API, PostBean[].class);
 
-        Post[] postData = response.getBody();
+        PostBean[] postBeanData = response.getBody();
 
-        return Arrays.asList(postData);
+        return Arrays.asList(postBeanData);
 
     }
 
     private boolean postDataIsNotInitialized(){
-        return this.postData == null;
+        return this.postBeanData == null;
     }
 }

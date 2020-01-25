@@ -4,7 +4,7 @@ package fr.fradigoy.backspringbash.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties
-public class Post {
+public class PostBean {
 
     private long id;
 
@@ -12,7 +12,21 @@ public class Post {
 
     private String body;
 
-    public Post() {
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                '}';
+    }
+
+    public PostBean() {
+    }
+
+    public PostBean(String title, String body) {
+        this.title = title;
+        this.body = body;
     }
 
     public long getId() {
