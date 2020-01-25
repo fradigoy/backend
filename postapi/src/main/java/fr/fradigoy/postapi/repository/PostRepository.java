@@ -1,6 +1,6 @@
-package fr.fradigoy.backspringbash.repository;
+package fr.fradigoy.postapi.repository;
 
-import fr.fradigoy.backspringbash.entity.Post;
+import fr.fradigoy.postapi.entity.Post;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PostRepository extends CrudRepository<Post, Long> {

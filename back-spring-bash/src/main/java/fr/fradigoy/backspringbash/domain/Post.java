@@ -4,7 +4,7 @@ package fr.fradigoy.backspringbash.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties
-public class PostBean {
+public class Post {
 
     private long id;
 
@@ -21,10 +21,10 @@ public class PostBean {
                 '}';
     }
 
-    public PostBean() {
+    public Post() {
     }
 
-    public PostBean(String title, String body) {
+    public Post(String title, String body) {
         this.title = title;
         this.body = body;
     }

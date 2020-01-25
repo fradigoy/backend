@@ -1,6 +1,7 @@
-package fr.fradigoy.backspringbash.entity;
+package fr.fradigoy.postapi.entity;
 
-import fr.fradigoy.backspringbash.domain.PostBean;
+
+import fr.fradigoy.postapi.bean.PostBean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,23 +12,23 @@ public class Post {
 
     @Id
     @GeneratedValue
-    private long id;
-
+    private Long id;
     private String title;
-
     private String body;
 
-    public Post(PostBean postBean) {
+    public Post() {
+    }
 
+    public Post(PostBean postBean) {
         this.title = postBean.getTitle();
         this.body = postBean.getBody();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

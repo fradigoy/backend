@@ -1,6 +1,6 @@
 package fr.fradigoy.backspringbash.reader;
 
-import fr.fradigoy.backspringbash.domain.PostBean;
+import fr.fradigoy.backspringbash.domain.Post;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -8,13 +8,13 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
 
-public class RESTPostReader implements ItemReader<PostBean> {
+public class RESTPostReader implements ItemReader<Post> {
 
     private final String URL_API;
     private final RestTemplate restTemplate;
 
     private int nextPostIndex;
-    private List<PostBean> postBeanData;
+    private List<Post> postData;
 
     public RESTPostReader(String url_api, RestTemplate restTemplate) {
         URL_API = url_api;
@@ -23,32 +23,32 @@ public class RESTPostReader implements ItemReader<PostBean> {
     }
 
     @Override
-    public PostBean read() throws Exception {
+    public Post read() throws Exception {
 
         if(postDataIsNotInitialized()){
-            postBeanData = fetchPostDataFromAPI();
+            postData = fetchPostDataFromAPI();
         }
 
-        PostBean nPostBean = null;
+        Post nPost = null;
 
-        if(nextPostIndex < postBeanData.size()){
-            nPostBean = postBeanData.get(nextPostIndex);
+        if(nextPostIndex < postData.size()){
+            nPost = postData.get(nextPostIndex);
             nextPostIndex++;
         }
 
-        return nPostBean;
+        return nPost;
     }
 
-    private List<PostBean> fetchPostDataFromAPI() {
-        ResponseEntity<PostBean[]> response = restTemplate.getForEntity(URL_API, PostBean[].class);
+    private List<Post> fetchPostDataFromAPI() {
+        ResponseEntity<Post[]> response = restTemplate.getForEntity(URL_API, Post[].class);
 
-        PostBean[] postBeanData = response.getBody();
+        Post[] postData = response.getBody();
 
-        return Arrays.asList(postBeanData);
+        return Arrays.asList(postData);
 
     }
 
     private boolean postDataIsNotInitialized(){
-        return this.postBeanData == null;
+        return this.postData == null;
     }
 }
