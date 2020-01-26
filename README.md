@@ -29,5 +29,12 @@
     PRIMARY KEY(id)
     );`
 
-* Changez les propriétés **username** et **password** Postgresql selon votre installation
+* Changez les propriétés **username** et **password** Postgresql selon votre installation:
+
+`spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+spring.datasource.url= jdbc:postgresql://localhost:5432/db-test
+spring.datasource.username=postgres
+spring.datasource.password=postgres`
+
+
 
