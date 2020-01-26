@@ -1,15 +1,13 @@
-package fr.fradigoy.backspringbash;
+package fr.fradigoy.postapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
-
 @SpringBootApplication
-public class BackSpringBashApplication {
+public class PostapiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BackSpringBashApplication.class, args);
+		SpringApplication.run(PostapiApplication.class, args);
 	}
 
 }
