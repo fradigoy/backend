@@ -3,16 +3,16 @@ package fr.fradigoy.postapi.entity;
 
 import fr.fradigoy.postapi.bean.PostBean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "post")
 public class Post {
 
     @Id
     @GeneratedValue
-    private Long id;
+    @Column(name = "id")
+    private Long idPost;
     private String title;
     private String body;
 
@@ -24,12 +24,12 @@ public class Post {
         this.body = postBean.getBody();
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdPost() {
+        return idPost;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long idPost) {
+        this.idPost = idPost;
     }
 
     public String getTitle() {
